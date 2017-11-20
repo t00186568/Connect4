@@ -39,7 +39,9 @@ public class Connect4 extends JFrame {
     }
 
 
-
+//string array - empty, red or blue
+// Counter++ for turn tracking - will modulus to check who's turn it is, red is evens, blue is odds
+// Each button will have a counter to know how many rows up each counter is
 
 
 
