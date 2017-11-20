@@ -25,9 +25,10 @@ public class Connect4 extends JFrame {
         int x=25, y=50;
 
         for(x=25; x<945; x=x+110){ //Outer loop draws horizontal ovals
+            //if(x/135) = false slot empty -- code for checking if slot is empty
             for(y=50; y<600; y=y+100){ //inner loop draws vertical ovals
-
-                g.drawOval(x, y, 80, 80); 
+                //if(y/600) = false slot empty
+                g.drawOval(x, y, 80, 80);
 
             }
 
