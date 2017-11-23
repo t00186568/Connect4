@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 
 public class Connect4 extends JFrame {
@@ -14,7 +15,7 @@ public class Connect4 extends JFrame {
     }
 
     public int counter = 1;
-    public Color color = Color.black;
+    public Color color = Color.black; //sets global color
     public Connect4(){
        setTitle("Connect4");
 
@@ -33,27 +34,34 @@ public class Connect4 extends JFrame {
         add(slot1); //Add new button to jFrame
         slot1.setBounds(10,610,100,50); // Set new Button Size and Location
         slot1.addActionListener(new ActionListener(){
+                int i=-1; //Initial array reference is -1, when clicked i++ is used which will fill in position 0 in array
                 public void actionPerformed(ActionEvent e){
 
-                    for(int i = 0; i<7; i++){
 
+                            i++;
                            if(Array.slotStatus[1][i] == 0) {
-                               if (counter % 2 == 1) { //Sets Array entry
+                               if (counter % 2 == 1) { //Finds which players turn is active - if modulus has a remainder it is Player 1's turn
 
-                                   Array.slotStatus[1][i] = 1;
-                                   color = Color.red;
+                                   Array.slotStatus[0][i] = 1; //Assigns player 1 to relevant Array entry
+
+
+                                   getGraphics().fillOval( 25, ((550)-(i*100)), 80, 80); //fills in relevant oval
+
+                                   repaint(); //redraws screen to show new oval
+                                   System.out.println(Arrays.deepToString(Array.slotStatus)); //prints array status to console - will be removed
+
+
+
+                               }else if(counter % 2 == 0){
+                                   Array.slotStatus[0][i] = 2;
+                                   getGraphics().fillOval(25, (550)-(i*100), 80, 80);
                                    repaint();
-                                    break;
 
-                               }else {
-                                   Array.slotStatus[1][i] = 2;
-
-                                   break;
                                }
 
                            }
 
-                       }
+
 
                        System.out.print(Array.slotStatus[1][0]);
                         counter++;
@@ -104,7 +112,7 @@ public class Connect4 extends JFrame {
 
 
     public void paint(Graphics g) {
-        //g.setColor(Color.black); //Sets Outline color to black
+        g.setColor(color); //Sets Outline color to black using global variable
 
         int x=25, y=50;
 
@@ -112,18 +120,18 @@ public class Connect4 extends JFrame {
 
             for(y=50; y<600; y=y+100){ //inner loop draws vertical ovals
 
-                    g.setColor(color);
+
                     g.drawOval(x, y, 80, 80);
                 }
         }
 
-        for(int i = 0; i<6; i++){
+        /*for(int i = 0; i<6; i++){
             if(Array.slotStatus[i][i] == 1){
                 g.setColor(Color.RED);
                 g.fillOval((i*135), (i*100), 80, 80);
 
             }
-        }
+        }*/
 
     }
 
