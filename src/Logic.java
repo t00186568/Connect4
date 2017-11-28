@@ -1,18 +1,29 @@
-public class Logic {
+import javax.swing.*;
+import java.awt.*;
+
+public class Logic extends JDialog {
 
     public static int playGrid[][] = new int[6][7];
+    boolean checkError = false;
 
 
+    //Begin code to check if the Lowest row of the Array is Empty
+    private int lowestRow = 5;
     public void CheckRow(){
 
-        
+            if((playGrid[lowestRow][Connect4.getGlobalQ()] != 1 && playGrid[lowestRow][Connect4.getGlobalQ()] != 2)){
+                JOptionPane.showMessageDialog(Connect4.connect4, "The lowest row must not be empty.");
+                checkError = true;
+            }
+        }
+
+    public boolean isCheckError() {
+        return checkError;
     }
 
-
-
-
-
-
+    public void setCheckError(boolean checkError) {
+        this.checkError = checkError;
+    }
 
 
 
