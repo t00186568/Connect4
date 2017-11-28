@@ -14,6 +14,10 @@ public class Connect4 extends JFrame {
 
     }
 
+    //Counter for determining which player's turn
+    //Odds = Red
+    //Evens = Blue
+    int counter = 1;
 
     Connect4() {
        JFrame connect4;
@@ -23,15 +27,39 @@ public class Connect4 extends JFrame {
        connect4.setVisible(true);
        connect4.setSize(800,600);
         JButton grid[][] = new JButton[6][7];  //Array for drawing JButtons in grid
-        int status[][] = new int[6][7]; //Array for tracking what status of buttons are
+
+
+
+
 
        //Begin Buttons
         for(int i=0; i <6; i++) //For loop for drawing vertical buttons
             for(int  q=0; q<7; q++){ //For loop for drawing horizontal buttons
-                grid[i][q] = new JButton(String.valueOf(i) + "," + String.valueOf(q)); //Gives buttons their Grid location Numbers -- will remove
+                String locationOfi = String.valueOf(i);
+                String locationOfq = String.valueOf(q); //Storing typecasted values in Variable to avoid "Variable is accessed within inner class" error
+                final int variableI = i; //Storing what i currently is as a final int to avoid "Variable is accessed within inner class" error
+                final int variableQ = q;
+
+                grid[i][q] = new JButton(locationOfi + "," + locationOfq); //Gives buttons their Grid location Numbers -- will remove
                 grid[i][q].setBackground(Color.white);
                 grid[i][q].setOpaque(true);
                 connect4.add(grid[i][q]);
+                grid[i][q].addActionListener(new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        if((counter % 2) == 1 ){
+                         grid[variableI][variableQ].setBackground(Color.red);
+
+                         counter++;
+
+                        }else{
+                            grid[variableI][variableQ].setBackground(Color.blue);
+                            counter++;
+                        }
+
+                    }
+                });
             }
 
 
@@ -47,8 +75,11 @@ public class Connect4 extends JFrame {
 
     }
 
+    public int getCounter() {
+        return counter;
+    }
 
-
-
-
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
 }
