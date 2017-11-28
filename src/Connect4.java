@@ -10,7 +10,7 @@ public class Connect4 extends JFrame {
 
 
     public static void main(String[] args) {
-        new Connect4();
+       new Connect4();
 
     }
 
@@ -19,7 +19,7 @@ public class Connect4 extends JFrame {
     //Evens = Blue
     int counter = 1;
 
-    Connect4() {
+     Connect4() {
        JFrame connect4;
        connect4 = new JFrame();
        connect4.setTitle("Connect4");
@@ -50,11 +50,27 @@ public class Connect4 extends JFrame {
                     {
                         if((counter % 2) == 1 ){
                          grid[variableI][variableQ].setBackground(Color.red);
+                         Logic.playGrid[variableI][variableQ] += 1;
+
+                         //Temp Code - Outputs Logic's table to console on Run
+                         Logic runlogic = new Logic();
+                         runlogic.main(null);
+                         System.out.print("\n\n");
+                         //end temp code
 
                          counter++;
 
+
                         }else{
                             grid[variableI][variableQ].setBackground(Color.blue);
+                            Logic.playGrid[variableI][variableQ] += 2;
+
+                            //Temp Code - Outputs Logic's table to console on Run
+                            Logic runlogic = new Logic();
+                            runlogic.main(null);
+                            System.out.print("\n\n");
+                            //end temp code
+
                             counter++;
                         }
 
