@@ -19,6 +19,7 @@ public class Connect4 extends JFrame {
     //Evens = Blue
     public static int counter = 1;
     public static int globalQ;
+    public static int globalI;
 
     public static JFrame connect4;
 
@@ -39,8 +40,8 @@ public class Connect4 extends JFrame {
        //Begin Buttons
         for(int i=0; i <6; i++) //For loop for drawing vertical buttons
             for(int  q=0; q<7; q++){ //For loop for drawing horizontal buttons
-                String locationOfi = String.valueOf(i+1);
-                String locationOfq = String.valueOf(q+1); //Storing typecasted values in Variable to avoid "Variable is accessed within inner class" error
+                String locationOfi = String.valueOf(i);
+                String locationOfq = String.valueOf(q); //Storing typecasted values in Variable to avoid "Variable is accessed within inner class" error
                 final int variableI = i; //Storing what i currently is as a final int to avoid "Variable is accessed within inner class" error
                 final int variableQ = q;
 
@@ -52,7 +53,7 @@ public class Connect4 extends JFrame {
                 {
                     public void actionPerformed(ActionEvent e)
                     {
-                        if((counter % 2) == 1 ){
+                        if((counter % 2) == 1 ){ //Red
                          grid[variableI][variableQ].setBackground(Color.red);
                          Logic.playGrid[variableI][variableQ] += 1;
                          Logic runlogic = new Logic();
@@ -63,15 +64,17 @@ public class Connect4 extends JFrame {
                          //end temp code
 
                          globalQ = variableQ; //Stores variable to global that is accessible from Logic class for checking Lowest row is not empty
+                         globalI = variableI;
                          runlogic.CheckRow();
                             if(runlogic.isCheckError() == true){
                                 grid[variableI][variableQ].setBackground(Color.white);
                                 Logic.playGrid[variableI][variableQ] -= 1;
                             }
+                         runlogic.CheckDownRight();
                          counter++;
 
 
-                        }else{
+                        }else{ //Blue
                             grid[variableI][variableQ].setBackground(Color.blue);
                             Logic.playGrid[variableI][variableQ] += 2;
 
@@ -81,12 +84,15 @@ public class Connect4 extends JFrame {
                             System.out.print("\n\n");
                             //end temp code
 
+
                             globalQ = variableQ;//Stores variable to global that is accessible from Logic class for checking Lowest row is not empty
+                            globalI = variableI;
                             runlogic.CheckRow();
                                 if(runlogic.isCheckError() == true){
                                     grid[variableI][variableQ].setBackground(Color.white);
                                     Logic.playGrid[variableI][variableQ] -= 2;
                                 }
+                            runlogic.CheckDownRight();
                             counter++;
                         }
 
@@ -129,5 +135,13 @@ public class Connect4 extends JFrame {
 
     public static void setGlobalQ(int globalQ) {
         Connect4.globalQ = globalQ;
+    }
+
+    public static int getGlobalI() {
+        return globalI;
+    }
+
+    public static void setGlobalI(int globalI) {
+        Connect4.globalI = globalI;
     }
 }
