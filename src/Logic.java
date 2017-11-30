@@ -462,7 +462,7 @@ public class Logic extends JDialog {
 
 
 
-        System.out.print("Blue: " +  upLeftCounterBlue + " Red: " + upLeftCounterRed + " Status: " + status); // Remove
+
 
 
         //Diagonal Up>Left win checker
@@ -477,6 +477,63 @@ public class Logic extends JDialog {
 
 
     }
+//End Up Left Checking
+
+
+//Begin checking Horizontal
+
+    public void CheckHorizontal(){
+
+       int horizontalCounterRed = 0;
+       int horizontalCounterBlue = 0;
+
+
+        for(int row = 5; row >0 ; row--)
+            for(int col = 0; col < 7; col++){
+            //red
+            if (playGrid[row][col] == 1) {   //These loops check if tile is a) the same color, b) surrounded by a tile that is the same color
+                if (col - 1 > 0 && col + 1 < 7) { //horizontally that is not out of bounds before apply the score
+                    if (playGrid[row][col - 1] == 1 || playGrid[row][col + 1] == 1) {
+                        horizontalCounterRed++;
+                    }else if(playGrid[row][col-1] != 1 || playGrid[row][col+1] != 1){ //If no red tile is next to current tile, resets counter
+                        horizontalCounterRed = 0;
+                    }
+                }else{
+                    if(playGrid[row][col] == 1) //if a direction is out of bounds it assumes that it is in a corner and gives the point
+                        horizontalCounterRed++;
+                }
+            //blue
+            }else if(playGrid[row][col] == 2){
+                if (col - 1 > 0 && col + 1 < 7) {
+                    if (playGrid[row][col - 1] == 2) {
+                        horizontalCounterBlue++;
+                    }else if(playGrid[row][col-1] != 2 || playGrid[row][col+1] != 2){
+                        horizontalCounterBlue = 0;
+                    }
+                }else{
+                    if(playGrid[row][col] == 2)
+                        horizontalCounterBlue++;
+                }
+            }
+
+
+        }
+
+
+        System.out.print("Blue: " +  horizontalCounterBlue + " Red: " + horizontalCounterRed );
+
+        if(horizontalCounterRed == 4 || horizontalCounterBlue == 4){
+            if(Connect4.counter%2 == 1){
+                winner += "Red";
+            }else{
+                winner += "Blue";
+            }
+            JOptionPane.showMessageDialog(Connect4.connect4, winner + " wins!!");
+        }
+
+
+
+            }
 
 
 
