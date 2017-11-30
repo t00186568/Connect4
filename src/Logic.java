@@ -481,15 +481,17 @@ public class Logic extends JDialog {
 
 
 //Begin checking Horizontal
-
+    int horizontalCounterRed = 0;
+    int horizontalCounterBlue = 0;
+    int whatIsRow = 0;
     public void CheckHorizontal(){
 
-       int horizontalCounterRed = 0;
-       int horizontalCounterBlue = 0;
+
 
 
         for(int row = 5; row >0 ; row--)
             for(int col = 0; col < 7; col++){
+                whatIsRow = row;
             //red
             if (playGrid[row][col] == 1) {   //These loops check if tile is a) the same color, b) surrounded by a tile that is the same color
                 if (col - 1 > 0 && col + 1 < 7) { //horizontally that is not out of bounds before apply the score
@@ -497,22 +499,20 @@ public class Logic extends JDialog {
                         horizontalCounterRed++;
                     }else if(playGrid[row][col-1] != 1 || playGrid[row][col+1] != 1){ //If no red tile is next to current tile, resets counter
                         horizontalCounterRed = 0;
+
                     }
-                }else{
-                    if(playGrid[row][col] == 1) //if a direction is out of bounds it assumes that it is in a corner and gives the point
-                        horizontalCounterRed++;
+
                 }
             //blue
             }else if(playGrid[row][col] == 2){
                 if (col - 1 > 0 && col + 1 < 7) {
-                    if (playGrid[row][col - 1] == 2) {
+                    if (playGrid[row][col - 1] == 2 || playGrid[row][col + 1] == 2) {
+
                         horizontalCounterBlue++;
-                    }else if(playGrid[row][col-1] != 2 || playGrid[row][col+1] != 2){
+                    } else if (playGrid[row][col - 1] != 2 || playGrid[row][col + 1] != 2) {
+
                         horizontalCounterBlue = 0;
                     }
-                }else{
-                    if(playGrid[row][col] == 2)
-                        horizontalCounterBlue++;
                 }
             }
 
@@ -520,7 +520,7 @@ public class Logic extends JDialog {
         }
 
 
-        System.out.print("Blue: " +  horizontalCounterBlue + " Red: " + horizontalCounterRed );
+        System.out.println(" Horizontal Blue: " +  horizontalCounterBlue + " Red: " + horizontalCounterRed + " Row: " + whatIsRow);
 
         if(horizontalCounterRed == 4 || horizontalCounterBlue == 4){
             if(Connect4.counter%2 == 1){
@@ -537,6 +537,55 @@ public class Logic extends JDialog {
 
 
 
+
+//Begin checking Vertical
+int verticalCounterRed = 0;
+    int verticalCounterBlue = 0;
+public void CheckVertical() {
+
+
+    for (int row = 5; row > 0; row--)
+        for (int col = 0; col < 7; col++) {
+            //red
+            if (playGrid[row][col] == 1) {   //These loops check if tile is a) the same color, b) surrounded by a tile that is the same color
+                if (row - 1 > 0 && row + 1 < 6) { //vertically that is not out of bounds before apply the score
+                    if (playGrid[row - 1][col] == 1 ) {
+                        verticalCounterRed++;
+                    }
+
+
+                    }
+                }
+                //blue
+
+
+                if (playGrid[row][col] == 2) {
+                    if (row - 1 > 0 && row + 1 < 6) {
+                        if (playGrid[row - 1][col] == 2 ) {
+                            verticalCounterBlue++;
+                        }
+
+                        }
+
+
+                    }
+
+
+        }
+
+            System.out.print("Blue: " + verticalCounterBlue + " Red: " + verticalCounterRed);
+
+            if (verticalCounterRed == 4 || verticalCounterBlue == 4) {
+                if (Connect4.counter % 2 == 1) {
+                    winner += "Red";
+                } else {
+                    winner += "Blue";
+                }
+                JOptionPane.showMessageDialog(Connect4.connect4, winner + " wins!!");
+            }
+
+
+        }
 
 
 
@@ -560,38 +609,5 @@ public class Logic extends JDialog {
 
 
 
-    //Code borrowed from https://stackoverflow.com/questions/12845208/how-to-print-two-dimensional-array-like-table
-    //Only for testing that array is functioning properly visually -- WILL BE REMOVED
 
-
-
-        public static void printRow ( int[] row){
-            for (int i : row) {
-                System.out.print(i);
-                System.out.print("\t");
-            }
-            System.out.println();}
-
-
-        public static void main (String[]args){
-
-            int i, j, k = 1;
-
-            for (i = 0; i < 6; i++) {
-                for (j = 0; j < 7; j++) {
-                    String.valueOf(playGrid[i][j]);
-
-                }
-            }
-
-            for (int[] row : playGrid) {
-                printRow(row);
-
-            }
-
-
-        }
-
-
-//End Borrowed code
  }

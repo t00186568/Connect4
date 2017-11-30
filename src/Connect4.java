@@ -77,6 +77,7 @@ public class Connect4 extends JFrame {
                          runlogic.CheckDownLeft();
                          runlogic.CheckUpLeft();
                          runlogic.CheckHorizontal();
+                         runlogic.CheckVertical();
                          counter++;
 
 
@@ -105,6 +106,7 @@ public class Connect4 extends JFrame {
                             runlogic.CheckDownLeft();
                             runlogic.CheckUpLeft();
                             runlogic.CheckHorizontal();
+                            runlogic.CheckVertical();
                             counter++;
                         }
 
