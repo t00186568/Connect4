@@ -18,6 +18,8 @@ public class gameInfo  {
     public static JPanel infoWindow;
 
    gameInfo(){
+
+
         gameInfo = new JFrame();
         gameInfo.setTitle("Connect4");
         gameInfo.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,14 +32,30 @@ public class gameInfo  {
         gameInfo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 
+
+
+        //Right side
        infoWindow = new JPanel();
-
-
-
        infoWindow.setSize(800,600);
        infoWindow.setLocation(500,500);
-       infoWindow.setBackground(Color.black);
+       infoWindow.setBackground(Color.white);
         infoWindow.setPreferredSize(new Dimension(200, 400));
+        infoWindow.setLayout(new BorderLayout());
+
+       JLabel title = new JLabel("Connect 4", JLabel.CENTER);
+       title.setFont(new Font("Verdana",1,24));
+       infoWindow.add(title, BorderLayout.NORTH);
+
+
+        String color = "";
+       JLabel turn = new JLabel("", JLabel.CENTER);
+       turn.setFont(new Font("Verdana",1,24));
+       turn.setForeground(Color.red);
+
+
+
+
+       infoWindow.add(turn, BorderLayout.CENTER);
 
        gameInfo.add(Connect4.connect4);
        gameInfo.add(infoWindow);
