@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 
-public class Connect4 extends JFrame {
+public class Connect4  {
 
 
     public static void main(String[] args) {
@@ -21,16 +21,17 @@ public class Connect4 extends JFrame {
     public static int globalQ;
     public static int globalI;
 
-    public static JFrame connect4;
+    public static JPanel connect4;
 
      Connect4() {
 
-       connect4 = new JFrame();
-       connect4.setTitle("Connect4");
-       connect4.setDefaultCloseOperation(EXIT_ON_CLOSE);
-       connect4.setVisible(true);
-       connect4.setSize(800,600);
-       connect4.setLocation(500,500);
+       connect4 = new JPanel();
+
+
+       //connect4.setVisible(true);
+       connect4.setSize(600,400);
+       connect4.setPreferredSize(new Dimension(600, 400));
+       //connect4.setLocation(500,500);
         JButton grid[][] = new JButton[6][7];  //Array for drawing JButtons in grid
 
 
@@ -58,10 +59,7 @@ public class Connect4 extends JFrame {
                          Logic.playGrid[variableI][variableQ] += 1;
                          Logic runlogic = new Logic();
 
-                         //Temp Code - Outputs Logic's table to console on Run
-                         runlogic.main(null);
-                         System.out.print("\n\n");
-                         //end temp code
+
 
                          globalQ = variableQ; //Stores variable to global that is accessible from Logic class for checking Lowest row is not empty
                          globalI = variableI;
@@ -85,11 +83,10 @@ public class Connect4 extends JFrame {
                             grid[variableI][variableQ].setBackground(Color.blue);
                             Logic.playGrid[variableI][variableQ] += 2;
 
-                            //Temp Code - Outputs Logic's table to console on Run
+
                             Logic runlogic = new Logic();
-                            runlogic.main(null);
-                            System.out.print("\n\n");
-                            //end temp code
+
+
 
 
                             globalQ = variableQ;//Stores variable to global that is accessible from Logic class for checking Lowest row is not empty
@@ -121,7 +118,7 @@ public class Connect4 extends JFrame {
 
 
        connect4.setLayout(new GridLayout(6,7));
-
+         //connect4.add(connect4);
 
 
 
@@ -135,11 +132,11 @@ public class Connect4 extends JFrame {
         this.counter = counter;
     }
 
-    public JFrame getConnect4() {
+    public JPanel getConnect4() {
         return connect4;
     }
 
-    public void setConnect4(JFrame connect4) {
+    public void setConnect4(JPanel connect4) {
         this.connect4 = connect4;
     }
 

@@ -520,7 +520,7 @@ public class Logic extends JDialog {
         }
 
 
-        System.out.println(" Horizontal Blue: " +  horizontalCounterBlue + " Red: " + horizontalCounterRed + " Row: " + whatIsRow);
+        System.out.println(" Horizontal Blue: " +  horizontalCounterBlue + " Red: " + horizontalCounterRed );
 
         if(horizontalCounterRed == 4 || horizontalCounterBlue == 4){
             if(Connect4.counter%2 == 1){
