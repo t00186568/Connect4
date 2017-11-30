@@ -70,7 +70,12 @@ public class Connect4 extends JFrame {
                                 grid[variableI][variableQ].setBackground(Color.white);
                                 Logic.playGrid[variableI][variableQ] -= 1;
                             }
+
+
                          runlogic.CheckDownRight();
+                         runlogic.CheckUpRight();
+                         runlogic.CheckDownLeft();
+                         runlogic.CheckUpLeft();
                          counter++;
 
 
@@ -92,7 +97,12 @@ public class Connect4 extends JFrame {
                                     grid[variableI][variableQ].setBackground(Color.white);
                                     Logic.playGrid[variableI][variableQ] -= 2;
                                 }
+
+
                             runlogic.CheckDownRight();
+                            runlogic.CheckUpRight();
+                            runlogic.CheckDownLeft();
+                            runlogic.CheckUpLeft();
                             counter++;
                         }
 
